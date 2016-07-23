@@ -27,7 +27,9 @@ var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
     {
         var cityname = event.nativeEvent.text;
         this.setState({cityname: cityname});
-        fetch('http://api.openweathermap.org/data/2.5/weather?q='+ cityname +'&appid='+APPID)
+        var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q='+ cityname +'&appid='+APPID;
+        console.log(requestUrl);
+        fetch(requestUrl)
             .then((response) => response.json())
             .then((responseJSON) => {
                 console.log(responseJSON);
@@ -119,7 +121,7 @@ var styles = StyleSheet.create({
     },
     cityStyle: {
         flex:1,
-        width: 50,
+        width: 80,
         height: 30,
         marginLeft: 5,
         backgroundColor: '#FFFFFF',
