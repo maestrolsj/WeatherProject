@@ -13,6 +13,7 @@ var {
     } = React;
 
 var Forecast = require('./Forecast');
+var styles = require('./styles/weatherStyle');
 
 var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
 
@@ -36,7 +37,7 @@ var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
                 this.setState({
                     forecast: {
                         main: responseJSON.name,
-                        description: responseJSON.base,
+                        description: responseJSON.weather[0].main,
                         temp: responseJSON.main.temp
                     }
                 })
@@ -83,58 +84,7 @@ var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
 
 });
 
-var baseFontSize = 16;
 
-var styles = StyleSheet.create({
-
-
-    container: {
-        flex: 1,
-        alignItems: 'center',
-
-    },
-    backdrop: {
-        flex: 1,
-        flexDirection: 'column'
-    },
-    overlay: {
-        paddingTop: 5,
-        backgroundColor: '#000000',
-        opacity: 0.5,
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    row: {
-        flex: 1,
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        alignItems: 'center',
-        padding: 30
-    },
-    zipContainer: {
-        flex: 1,
-        borderBottomColor: '#FFFFFF',
-        borderBottomWidth: 1,
-        marginLeft: 5,
-
-        marginTop: 3
-    },
-    cityStyle: {
-        flex:1,
-        width: 80,
-        height: 30,
-        marginLeft: 5,
-        backgroundColor: '#FFFFFF',
-        fontSize: 20,
-        padding: 0,
-        color: '#FF0000'
-    },
-    mainText: {
-        flex: 1,
-        fontSize: baseFontSize,
-        color: '#FFFFFF'
-    }
-});
 
 module.exports = WeatherProject;
 

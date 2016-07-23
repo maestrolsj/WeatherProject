@@ -4,6 +4,9 @@ var {
     Text,
     View
     } = React;
+
+var styles = require('./styles/forecastStyle');
+
 var Forecast = React.createClass({
     render: function () {
         return (
@@ -12,7 +15,7 @@ var Forecast = React.createClass({
                      - {this.props.main}
                 </Text>
                 <Text style={styles.mainText}>
-                   - Current conditions: {this.props.description}
+                   - Weather : {this.props.description}
                 </Text>
                 <Text style={styles.bigText}>
                    - {this.props.temp}°F
@@ -22,19 +25,5 @@ var Forecast = React.createClass({
         );
     }
 });
-var styles = StyleSheet.create({
-    bigText: {
-        flex: 2,
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        color: '#FFFFFF'
-    },
-    mainText: {
-        flex: 1,
-        fontSize: 16,
-        textAlign: 'center',
-        color: '#FFFFFF'
-    }
-})
+
 module.exports = Forecast;
