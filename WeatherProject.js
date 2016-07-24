@@ -2,34 +2,36 @@
 
 const APPID = '9e517c39e4a8a270d91231c8fb7d01b8';
 
-var React = require('react-native');
-
-var {
-    StyleSheet,
+// Import way for ES6
+import  React, {Component} from 'react';
+import {
     Text,
     View,
     TextInput,
-    Image
-    } = React;
+    Image } from 'react-native';
+
 
 var Forecast = require('./Forecast');
-var styles = require('./styles/weatherStyle');
+var styles   = require('./styles/weatherStyle');
 
-var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
+class WeatherProject extends Component {// Parent of Forecast
 
-    getInitialState: function () {
-        return {
-            cityname: '',
-            forecast: null
-        };
-    },
+    constructor(props) {
+        super(props);
 
-    _handleTextChange(event)
-    {
+        this._handleTextChange = this._handleTextChange.bind(this);
+        this.state = {cityname: '', forecast: null};
+    }
+
+
+    _handleTextChange(event) {
+
         var cityname = event.nativeEvent.text;
+
         this.setState({cityname: cityname});
-        var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q='+ cityname +'&appid='+APPID;
-        console.log(requestUrl);
+
+        var requestUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityname + '&appid=' + APPID;
+
         fetch(requestUrl)
             .then((response) => response.json())
             .then((responseJSON) => {
@@ -45,11 +47,12 @@ var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
             .catch((error) => {
                 console.warn(error);
             });
-    },
+    }
 
     render() {
 
         var content = null;
+        console.log(this);
         if (this.state.forecast !== null) {
             content = <Forecast
                 main={this.state.forecast.main}
@@ -80,10 +83,7 @@ var WeatherProject = React.createClass({  // Forecast의 부모 컴포넌트
             </View>
         );
     }
-
-
-});
-
+}
 
 
 module.exports = WeatherProject;
