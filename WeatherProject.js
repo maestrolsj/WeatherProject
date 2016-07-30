@@ -21,7 +21,9 @@ class WeatherProject extends Component {// Parent of Forecast
 
         this._handleTextChange = this._handleTextChange.bind(this);
         this.state = {cityname: '', forecast: null};
+
     }
+
 
 
     _handleTextChange(event) {
